@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新年抽奖</title>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<!--<link rel="stylesheet" href="/dist/css/swiper.min.css">
+<link rel="stylesheet" href="/dist/css/animate.min.css">
+<script src="/dist/js/swiper.min.js"></script>
+<script src="/dist/js/swiper.animate.min.js"></script>-->
+
+<style>
+*{
+	margin:0;
+	padding:0;
+  box-sizing: border-box;
+}
+@media only screen and (min-width: 320px){
+  html {
+    font-size: 62.5% !important;
+  }
+}
+@media only screen and (min-width: 640px){
+  html {
+    font-size: 100% !important;
+  }
+}
+@media only screen and (min-width: 750px){
+  html {
+    font-size: 120% !important;
+  }
+}
+html,body{
+	height:100%;
+}
+body{
+	font-family:"microsoft yahei";
+  background: url(images/bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+.swiper-container {
+  /*  width: 320px;
+    height: 480px;*/
+	width: 100%;
+    height: 100%;
+	/* background:#000; */
+
+  
+}  
+
+.swiper-slide{
+	width:100%;
+	height:100%;
+  padding: 10px;
+}
+.border{
+  width:100%;
+  height:100%;
+  background:url(images/border.png) no-repeat left top;
+  background-size:100% 100%;
+  text-align: center;
+}
+.swiper-pagination-bullet {
+width: 6px;
+height: 6px;
+background: #fff;
+opacity: .4;
+}
+.swiper-pagination-bullet-active {
+opacity: 1;
+}
+@-webkit-keyframes start {
+	0%,30% {opacity: 0;-webkit-transform: translate(0,10px);}
+	60% {opacity: 1;-webkit-transform: translate(0,0);}
+	100% {opacity: 0;-webkit-transform: translate(0,-8px);}
+}
+@-moz-keyframes start {
+	0%,30% {opacity: 0;-moz-transform: translate(0,10px);}
+	60% {opacity: 1;-moz-transform: translate(0,0);}
+	100% {opacity: 0;-moz-transform: translate(0,-8px);}
+}
+@keyframes start {
+	0%,30% {opacity: 0;transform: translate(0,10px);}
+	60% {opacity: 1;transform: translate(0,0);}
+	100% {opacity: 0;transform: translate(0,-8px);}
+}
+.ani{
+	/* position:absolute; */
+	}
+.txt{
+	position:absolute;
+}
+#array{
+	position:absolute;z-index:999;-webkit-animation: start 1.5s infinite ease-in-out;
+}
+#bg{
+  position: relative;
+}
+#bg img{
+    width: 22rem;
+  }
+#bg .bag{
+  width: 50px;
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+}
+.logo{
+  width: 14.5rem;
+  margin-top: 1.5rem;
+}
+.videoSlogen{
+  width: 22rem;
+  margin-top: 4rem;
+}
+.video{
+  width: 25rem;
+  height: 14.5rem;
+  margin: 1.5rem auto 4rem auto;
+  position: relative;
+  border: 1px solid #f9d7a5;
+  box-shadow: 0 10px 10px -1px #ad1017;
+}
+.video img{
+  width: 100%;
+}
+.video .poster {
+position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100
+}
+.video video{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100
+}
+.videoBottom{
+  width: 25rem;
+}
+.activityTitle{
+  width: 18rem;
+  margin: 4rem 0;
+}
+.count{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, .5);
+  line-height: 40rem;
+  font-size: 10rem;
+}
+#light{
+  position: absolute;
+  top: 100000px;
+  left: calc(50% - 9rem);
+  z-index: 1;
+  -webkit-animation: rotating 3s linear infinite;
+  animation: rotating 4s linear infinite;
+}
+@keyframes rotating{
+    from{
+      transform:rotate(0deg);
+      opacity: 1;
+    }
+    to{
+      transform:rotate(360deg);
+      opacity: 0;
+    }
+}
+@-webkit-keyframes rotating {
+    from { -webkit-transform: rotate(0) }
+    to { -webkit-transform: rotate(360deg) }
+}
+.recordBanner{
+  width: 22rem;
+  margin-top: 2rem;
+}
+.recordContainer{
+  color: #fabd7c;
+  font-size: 1rem;
+  margin: 0 1.5rem;
+  height: calc(100% - 29rem);
+  position: relative;
+  border-radius: .4rem;
+  padding: 1rem;
+  background: url(images/recordBg.png) no-repeat;
+  background-size: 100% 100%;
+}
+.recordContainer h4{
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-top: .8rem;
+}
+button{
+  background: unset;
+  border: none;
+}
+button:focus{
+  border: none;
+  outline: none;
+}
+.recordContainer button {
+  position: absolute;
+  width: 10rem;
+  top: -1.5rem;
+}
+.recordContainer .recordBt1{
+  left: 8%
+}
+.recordContainer .recordBt2{
+  right: 8%;
+}
+.recordContainer button img{
+  width: 100%;
+}
+.rules, .recordList{
+  height: 100%;
+  overflow: auto;
+}
+.rules{
+  text-align: left;
+}
+.recordList{
+  display: none;
+}
+.recordList table{
+  width: 100%;
+}
+.recordList table th, .recordList table td{
+  position: relative;
+  line-height: 2rem;
+}
+.recordList table th img{
+  position: absolute;
+  width: 10px;
+  bottom: -1px;
+  left: calc(50% - 5px);
+}
+.jackpot{
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0,0,0,.5);
+}
+.jackpot button{
+  width: 14rem;
+  position: absolute;
+  bottom: 2rem;
+  left: calc(50% - 7rem);
+}
+.jackpot button img{
+  width: 100%;
+}
+.jackpotImg{
+  width: 23rem;
+  position: absolute;
+  bottom: 5rem;
+  left: calc(50% - 11.5rem);
+}
+.jackpotBag{
+  width: 29rem;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 14.5rem);
+}
+</style>
+</head>
+
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    <!-------------视频宣传----------------->
+        <section class="swiper-slide swiper-slide1">
+          <div class="border">
+            <div><img class="logo ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <img class="videoSlogen ani resize" src="images/shipin_slogen.png" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"/>
+            <div class="video ani resize" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="0s">
+            			<!-- <img src="images/video.png"/> -->
+            			<video style="display:none" id="myVideo" controls="controls"
+            		x5-video-player-fullscreen="true"
+                   webkit-playsinline="true"
+                   x-webkit-airplay="true"
+                   playsinline="true"
+                   x5-playsinline>
+            			<source src="http://120.77.221.145/video.mp4" type="video/mp4" />
+            			</video>
+            			<img class="poster" src="images/poster.png"/>
+            		</div>
+            <img class="videoBottom ani resize" src="images/shipin_bottom.png" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="0.8s"/>
+          </div>
+        </section>
+     <!---------------新年抽奖-------------->   
+        <section class="swiper-slide swiper-slide2">
+          <div class="border">
+            <div><img class="logo ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <img class="activityTitle ani resize" src="images/activity_title.png" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="0.3s"/>
+            <div id="bg" class="ani resize" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+              <img src="images/activity_bag.png" style="position: relative;z-index: 3;"/>
+              <img id="light" src="images/activity_bagLight.png" />
+            </div>
+            <div class="count count1 ani resize" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="2s">1</div>
+            <div class="count count2 ani resize" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1s">2</div>
+            <div class="count count3 ani resize" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0s">3</div>
+          </div>
+          
+        </section>
+     <!----------------活动规则和记录-------------->
+        <section class="swiper-slide swiper-slide3">
+          <div class="border">
+            <div><img class="logo ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <img class="recordBanner ani resize" src="images/activity_bag.png" swiper-animate-effect="zoomInDown" swiper-animate-duration="1s" swiper-animate-delay="0.3s"/>
+            <div class="recordContainer ani resize" swiper-animate-effect="zoomInUp" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+              <button class="recordBt1" onclick="toggleBt(1)"><img src="images/recordBt11.png"/></button>
+              <button class="recordBt2" onclick="toggleBt(2)"><img src="images/recordBt2.png"/></button>
+              <div class="rules">
+                <h4>1.活动对象：</h4>
+                <p>活动期间购买佳贝艾特听装（400g/800g）产品且成功积分用户。</p>
+                <h4>2.活动时间：</h4>
+                <p>活动期间购买佳贝艾特听装（400g/800g）产品且成功积分用户。</p>
+                <h4>3.参与说明：</h4>
+                <p>①抽奖机会：每购买一听佳贝艾特羊奶粉（400g/800g）产品均可获得一次抽奖机会，每人最高有3次中奖机会，小奖可重复中奖，高额奖品单人中奖仅1次，不得重复；</p>
+                <p>②关于奖品：若为实物奖品请在5天内完成收货信息填写，奖品于7-10个工作日内寄出；若为爱奇艺月卡一张，请在中奖纪录中获取激活码，前往爱奇艺平台激活使用（爱奇艺VIP月卡激活截止时间：2020年3月25日，请您在此日期前激活使用）;</p>
+                <p>4.如您对活动有疑问请前往“佳贝艾特羊奶粉”公众号咨询，也可QQ、电话联系400-892-1818。</p>
+              </div>
+              <div class="recordList">
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr><th>激活码<img src="images/listIcon.png"/></th><th>中奖时间<img src="images/listIcon.png"/></th></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                  <tr><td>16516841684</td><td>2019/10/12</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+   <img src="images/arrow.png" style="width:20px;height:15px; top:460px; left:150px;" id="array" class="resize"> 
+  <div class="swiper-pagination"></div>
+</div>
+<!----------------中奖提示-------------->
+<div class="jackpot">
+  <img class="jackpotImg" src="images/jackpot1.png"/>
+  <img class="jackpotBag" src="images/jackpot_bag.png"/>
+  <button onclick="location.href='address.html'"><img src="images/jackpot_bt.png"/></button>
+</div>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/swiper.animate.min.js"></script>
+<script>  
+scaleW=window.innerWidth/320;
+scaleH=window.innerHeight/480;
+var resizes = document.querySelectorAll('.resize');
+          for (var j=0; j<resizes.length; j++) {
+           resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+		   resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+		   resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+		   resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px'; 
+          }
+  var giftInterval = null
+  var mySwiper = new Swiper ('.swiper-container', {
+   direction : 'vertical',
+   pagination: '.swiper-pagination',
+  //virtualTranslate : true,
+   mousewheelControl : true,
+   onInit: function(swiper){
+   swiperAnimateCache(swiper);
+   swiperAnimate(swiper);
+	  },
+   onSlideChangeEnd: function(swiper){
+    swiperAnimate(swiper);
+    if (swiper.activeIndex == 1) {
+      setTimeout(function () {
+        $(".count3").hide()
+      },1000)
+      setTimeout(function () {
+        $(".count2").hide()
+      },2000)
+      setTimeout(function () {
+        $(".count1").hide()
+        $("#light").css('top', 0)
+        giftInterval = setInterval(function () {
+          new bag().init()
+          new bag().init()
+          new bag().init()
+        },500)
+      },3000)
+    }
+  },
+	onTransitionEnd: function(swiper){
+    swiperAnimate(swiper);
+    if (swiper.activeIndex == 1) {
+      clearInterval(giftInterval);
+      $("#light").css('top', '1000000px');
+    }
+    if (swiper.activeIndex == 2) {
+      $("#array").hide()
+    } else {
+      $("#array").show()
+    }
+  },
+	
+	
+	watchSlidesProgress: true,
+
+      onProgress: function(swiper){
+        for (var i = 0; i < swiper.slides.length; i++){
+          var slide = swiper.slides[i];
+          var progress = slide.progress;
+          var translate = progress*swiper.height/4;  
+		  scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+          var opacity = 1 - Math.min(Math.abs(progress/2),0.5);
+          slide.style.opacity = opacity;
+		  es = slide.style;
+		  es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0,'+translate+'px,-'+translate+'px) scaleY(' + scale + ')';
+
+        }
+      },
+	
+	   onSetTransition: function(swiper, speed) {
+        for (var i = 0; i < swiper.slides.length; i++){
+          es = swiper.slides[i].style;
+		  es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+
+        }
+      },
+	   })    
+     
+     ////////////视频
+     var video = document.getElementById("myVideo");
+     var u = navigator.userAgent;
+     var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+     document.addEventListener(
+     	    'WeixinJSBridgeReady',
+     	    function() {
+     	    	if (isiOS) {
+     		        video.play();
+     		        $(".poster").hide();
+     		    	$(video).show()
+     	    	}
+     	    },
+     	    false
+     	);
+     $(".poster").on('touchend', function(){
+     	video.play()
+     });
+     video.ontimeupdate = function() {
+     	$(".poster").hide();
+     	$(video).show()
+     };
+     	var palyer = document.getElementById("media"); 
+     	$('#audio_btn').click(function() {
+     	    $(this).toggleClass("rotate-pause"); 
+     	    if(!$(this).hasClass("rotate-pause")){
+     	    	palyer.play();
+     	    }else{
+     	    	palyer.pause();
+     	    }
+     	});
+      ////////////礼包
+            function bag () {
+              this.init = function () {
+                var bag = document.createElement('img')
+                var imgIndex = parseInt(Math.random() * 5 + 1)
+                bag.src = "images/bag" + imgIndex + '.png'
+                bag.className ="bag"
+                document.querySelector('#bg').appendChild(bag);
+                var x = bag.offsetLeft;
+                var y = bag.offsetTop;
+                var Vx = Math.random() * 20 -10
+                var Vy = parseInt(Math.random() * - 5) - 35
+                var Ay = Math.random() * 5
+                bag.addEventListener('click', function () {
+                  $(".jackpot").show()
+                  clearInterval(giftInterval)
+                })
+                var bagInterval = setInterval(function () {
+                  x += Vx
+                  Vy += Ay
+                  y += Vy
+                  bag.style.left = x + 'px'
+                  bag.style.top = y + 'px'
+                  if (x < -400 || x > 400 || y > 500) {
+                    bag.remove()
+                    clearInterval(bagInterval)
+                  }
+                }, 50)
+              }
+            }
+  ////////////////////活动记录
+  function toggleBt (index) {
+    if (index == 1) {
+      $(".recordBt1 img").attr("src", 'images/recordBt11.png')
+      $(".recordBt2 img").attr("src", 'images/recordBt2.png')
+      $(".rules").show()
+      $(".recordList").hide()
+    } else {
+      $(".recordBt1 img").attr("src", 'images/recordBt1.png')
+      $(".recordBt2 img").attr("src", 'images/recordBt21.png')
+      $(".rules").hide()
+      $(".recordList").show()
+    }
+  }
+  $(".recordContainer").on('touchmove', function (e) {
+    e.stopPropagation()
+  })
+  </script>
+</body>
+</html>
