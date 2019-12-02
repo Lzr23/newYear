@@ -17,9 +17,8 @@
       	height:100%;
       }
       body{
-      	font-family:"microsoft yahei";
         background: url(images/bg.png) no-repeat;
-        background-size: 100% 100%;
+        background-size:cover;
         padding: 0 10px;
         text-align: center;
       }
@@ -52,7 +51,7 @@
       .prizeContainer{
         position: relative;
         margin-top: .5rem;
-        margin-bottom: .7rem;
+        margin-bottom: .2rem;
       }
       .icon1{
         position: absolute;
@@ -67,7 +66,7 @@
         top: 1rem;
       }
       .prizeImg{
-        width: 5.4rem;
+        width: 4.4rem;
       }
       .addressTitle{
         width: 5.1rem;
@@ -112,6 +111,39 @@
       .addressBt img{
         width: 3.7rem;
       }
+      .weui-picker-modal{
+        height: 260px;
+      }
+      .toolbar .toolbar-inner{
+        height: 44px;
+      }
+      .toolbar .title{
+        line-height: 44px;
+      }
+      .toolbar .picker-button{
+        height: 44px;
+        line-height: 44px;
+      }
+      .weui-picker-modal .picker-items, .toolbar, .toolbar .title{
+        font-size: 16px;
+      }
+      .weui-picker-modal .picker-modal-inner{
+        height: 216px;
+      }
+      .buttonScale {
+        -webkit-animation: buttonScale 1s ease-in-out 1;
+        animation: buttonScale 1s ease-in-out 1;
+      }
+      @keyframes buttonScale{
+        0%   {transform: scale(1)}
+        50%  {transform:scale(.8)}
+        100% {transform:scale(1)}
+      }
+      @-webkit-keyframes buttonScale {
+        0%   {transform: scale(1)}
+        50%  {transform:scale(.8)}
+        100% {transform:scale(1)}
+      }
     </style>
 	</head>
 	<body>
@@ -138,9 +170,16 @@
             <input class="weui-input" type="number">
           </div>
         </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><img src="images/addressIcon4.png"></div>
+          <div class="weui-cell__hd"><label class="weui-label">省市区:</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" id='city-picker'>
+          </div>
+        </div>
         <div class="weui-cell" style="margin-bottom: 0;">
           <div class="weui-cell__hd"><img src="images/addressIcon4.png"></div>
-          <div class="weui-cell__hd"><label class="weui-label">收货地址:</label></div>
+          <div class="weui-cell__hd"><label class="weui-label">详细地址:</label></div>
           <div class="weui-cell__bd">
             <input class="weui-input" type="text">
           </div>
@@ -152,7 +191,11 @@
     
     <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
     <script type="text/javascript">
+      $("#city-picker").cityPicker({
+        title: ""
+      });
       ///////////rem
        function initFontSize() {
          var screenWidth;
@@ -177,6 +220,24 @@
        function iphoneX(){
        return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
       }
+      ////////标记,返回到index的中奖记录
+      sessionStorage.setItem('isBackToRecord', true)
+      
+      /////////////按钮点击缩放
+      $("button").click(function () {
+        $(this).children('img').addClass('buttonScale')
+        var that = this
+        setTimeout(function () {
+          $(that).children('img').removeClass('buttonScale')
+        },1000)
+      })
+      $("a").click(function () {
+        $(this).children('img').addClass('buttonScale')
+        var that = this
+        setTimeout(function () {
+          $(that).children('img').removeClass('buttonScale')
+        },1000)
+      })
     </script>
 	</body>
 </html>

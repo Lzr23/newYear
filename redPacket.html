@@ -87,6 +87,20 @@
       .redBottom{
         width: 3.5rem;
       }
+      .buttonScale {
+        -webkit-animation: buttonScale 1s ease-in-out 1;
+        animation: buttonScale 1s ease-in-out 1;
+      }
+      @keyframes buttonScale{
+        0%   {transform: scale(1)}
+        50%  {transform:scale(.8)}
+        100% {transform:scale(1)}
+      }
+      @-webkit-keyframes buttonScale {
+        0%   {transform: scale(1)}
+        50%  {transform:scale(.8)}
+        100% {transform:scale(1)}
+      }
     </style>
 	</head>
 	<body>
@@ -128,6 +142,22 @@
        function iphoneX(){
        return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
       }
+      
+      /////////////按钮点击缩放
+      $("button").click(function () {
+        $(this).children('img').addClass('buttonScale')
+        var that = this
+        setTimeout(function () {
+          $(that).children('img').removeClass('buttonScale')
+        },1000)
+      })
+      $("a").click(function () {
+        $(this).children('img').addClass('buttonScale')
+        var that = this
+        setTimeout(function () {
+          $(that).children('img').removeClass('buttonScale')
+        },1000)
+      })
     </script>
 	</body>
 </html>
