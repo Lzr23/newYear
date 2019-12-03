@@ -15,9 +15,9 @@
       	height:100%;
       }
       body{
-      	font-family:"microsoft yahei";
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         background: url(images/bg.png) no-repeat;
-        background-size: 100% 100%;
+        background-size: cover;
         text-align: center;
       }
       .iphoneX .addressBottom{
@@ -68,6 +68,20 @@
       }
       .addressTitle{
         width: 6.2rem;
+        height: 2.2rem;
+        margin: 0 auto;
+        background: url(images/redDescBg.png) no-repeat;
+        background-size: 100% 100%;
+        color: #ffe492;
+        font-size: .32rem;
+        padding: .2rem .5rem;
+      }
+      .addressTitle h4{
+        font-size: .36rem;
+        margin-bottom: .2rem;
+      }
+      .redDesc{
+        display: none;
       }
       button{
         background: unset;
@@ -84,12 +98,64 @@
       .addressBt img{
         width: 3.7rem;
       }
+      .jackpot{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(0,0,0,.5);
+        padding: .8rem;
+        transform: scale(0);
+        opacity: 0;
+        overflow: hidden;
+      }
+      .jackpotShow{
+        -webkit-animation: jackpot .5s ease 1;
+        animation: jackpot .5s ease 1;
+      }
+      @keyframes jackpot{
+          from{
+            transform: scale(0);
+            opacity: 0;
+          }
+          to{
+            transform: scale(1);
+            opacity: 1;
+          }
+      }
+      @-webkit-keyframes jackpot {
+          from{
+            transform: scale(0);
+            opacity: 0;
+          }
+          to{
+            transform: scale(1);
+            opacity: 1;
+          }
+      }
+      .jackpot>img{
+        width: 95%;
+      }
+      .jackpotBottom{
+        text-align: center;
+      }
+      .jackpotBottom img{
+        width: 3rem;
+      }
+      .jackpotBottom p img{
+        width: 2.5rem;
+        vertical-align: top;
+      }
       .redBottom{
         width: 3.5rem;
       }
       .buttonScale {
-        -webkit-animation: buttonScale 1s ease-in-out 1;
-        animation: buttonScale 1s ease-in-out 1;
+        -webkit-animation: buttonScale .5s ease-in-out 1;
+        animation: buttonScale .5s ease-in-out 1;
       }
       @keyframes buttonScale{
         0%   {transform: scale(1)}
@@ -111,53 +177,57 @@
         <img class="icon2" src="images/addressIcon1.png"/>
         <img class="prizeImg" src="images/redPack1.png"/>
       </div>
-      <img class="addressTitle" src="images/redDesc1.png"/>
-      <div><button class="addressBt" onclick=""><img src="images/redBt.png"/></button></div>
+      <div class="addressTitle">
+        <h4>兑换说明：</h4>
+        <p class="redDesc redDesc1">会员激活码：1354641564154</p>
+        <p class="redDesc redDesc2">88元红包现金已自动存入微信钱包，请到“钱包-账单”处查看。</p>
+      </div>
+      <div><button class="addressBt" onclick="showShare()"><img src="images/redBt.png"/></button></div>
       <img class="redBottom" src="images/redBottom.png"/>
+    </div>
+    <!----------------海报分享-------------->
+    <div class="jackpot">
+      <img src="images/jackpot2.png"/>
+      <div class="jackpotBottom">
+        <a><img src="images/jackpotBt2.png"/></a>
+        <p><img src="images/jackpotText.png"/></p>
+      </div>
     </div>
     
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/common.js" type="text/javascript"></script>
     <script type="text/javascript">
-      ///////////rem
-       function initFontSize() {
-         var screenWidth;
-         var html = document.getElementsByTagName("html")[0];
-         if (window.innerWidth) {
-             screenWidth = window.innerWidth;
-         } else if ((document.body) && (document.body.clientWidth)) {
-             screenWidth = document.body.clientWidth;
-         }
-         html.style.cssText = 'font-size: '+100 * screenWidth / 750 + 'px !important';
-         if (iphoneX()) {
-           $('body').addClass('iphoneX')
-         } else {
-           $('body').removeClass('iphoneX')
-         }
-       }
-       initFontSize()
-       window.onresize = () => {
-           initFontSize()
-       }
-       
-       function iphoneX(){
-       return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+      ///////////初始化显示
+      var giftIndex = getQueryString('type')
+      switch (giftIndex){
+        case '1':
+          $(".prizeImg").css('width', '5.4rem')
+          $('.prizeImg').attr('src', 'images/redPack1.png')
+          $(".jackpot>img").attr('src', 'images/jackpot2.png')
+          $(".redDesc1").show()
+          break;
+        case '2':
+          $(".prizeImg").css('width', '3.6rem')
+          $('.prizeImg').attr('src', 'images/redPack2.png')
+          $(".jackpot>img").attr('src', 'images/jackpot3.png')
+          $(".redDesc2").show()
+          break;
       }
       
-      /////////////按钮点击缩放
-      $("button").click(function () {
-        $(this).children('img').addClass('buttonScale')
-        var that = this
-        setTimeout(function () {
-          $(that).children('img').removeClass('buttonScale')
-        },1000)
-      })
-      $("a").click(function () {
-        $(this).children('img').addClass('buttonScale')
-        var that = this
-        setTimeout(function () {
-          $(that).children('img').removeClass('buttonScale')
-        },1000)
-      })
+      ///////////分享海报
+      function showShare () {
+        $(".jackpot").addClass('jackpotShow')
+        setTimeout(function() {
+        $(".jackpot").css('transform', 'scale(1)')
+        $(".jackpot").css('opacity', '1')
+        },100)
+      }
+      
+      //////////调整一下样式,尽量不滚动
+      if (window.innerHeight < 630 && (window.innerHeight / window.innerWidth) < 1.7) {
+        $(".prizeContainer").css('margin-bottom', 0)
+        $(".addressBt").css('margin-bottom', 0)
+      }
     </script>
 	</body>
 </html>

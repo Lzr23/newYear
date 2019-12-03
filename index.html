@@ -21,6 +21,7 @@ html,body{
 	height:100%;
 }
 body{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	font-family:"microsoft yahei";
   background: url(images/bg.png) no-repeat;
   background-size: 100% 100%;
@@ -378,6 +379,7 @@ button:focus{
   z-index: 100;
   background: #721416;
   transform: scale(0);
+  opacity: 0;
   overflow: hidden;
 }
 .jackpotShow{
@@ -387,9 +389,11 @@ button:focus{
 @keyframes jackpot{
     from{
       transform: scale(0);
+      opacity: 0;
     }
     to{
       transform: scale(1);
+      opacity: 1;
     }
 }
 @-webkit-keyframes jackpot {
@@ -419,8 +423,8 @@ button:focus{
   vertical-align: top;
 }
 .buttonScale {
-  -webkit-animation: buttonScale 1s ease-in-out 1;
-  animation: buttonScale 1s ease-in-out 1;
+  -webkit-animation: buttonScale .5s ease-in-out 1;
+  animation: buttonScale .5s ease-in-out 1;
 }
 @keyframes buttonScale{
   0%   {transform: scale(1)}
@@ -506,8 +510,8 @@ button:focus{
               <div class="recordList">
                 <table border="0" cellspacing="0" cellpadding="0">
                   <tr><th>奖品名称<img src="images/listIcon.png"/></th><th>中奖时间<img src="images/listIcon.png"/></th><th></th></tr>
-                  <tr><td>新年围巾礼盒</td><td>2019/10/12</td><td><a href="address.html"><img src="images/prizeBt.png"/></a></td></tr>
-                  <tr><td>爱奇艺VIP月卡</td><td>2019/10/12</td><td><a href="redPacket.html"><img src="images/prizeBt.png"/></a></td></tr>
+                  <tr><td>新年围巾礼盒</td><td>2019/10/12</td><td><a href="javascript: void(0)" onclick="checkGift('reality')"><img src="images/prizeBt.png"/></a></td></tr>
+                  <tr><td>爱奇艺VIP月卡</td><td>2019/10/12</td><td><a href="javascript: void(0)" onclick="checkGift('online')"><img src="images/prizeBt.png"/></a></td></tr>
                 </table>
               </div>
             </div>
@@ -530,6 +534,7 @@ button:focus{
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script src="js/swiper.animate.min.js"></script>
+<script src="js/common.js" type="text/javascript"></script>
 <script>
   ////////////视频
   var video = document.getElementById("myVideo");
@@ -563,9 +568,9 @@ button:focus{
    });
    
    ///////////////整页滑动
-   var initialSlide = 0
-   if (sessionStorage.getItem('isBackToRecord') == 'true') { //是否返回到中奖记录
-     initialSlide = 2
+   //////返回位置
+   var initialSlide = sessionStorage.getItem('pageComeFrom') || 0
+   if (sessionStorage.getItem('pageComeFrom') == '2') {
      $(".recordBt1 img").attr('src', 'images/recordBt1.png')
      $(".recordBt2 img").attr('src', 'images/recordBt21.png')
      $(".rules").hide()
@@ -690,15 +695,30 @@ var resizes = document.querySelectorAll('.resize');
         }, 50)
       }
     }
+    var isClicked = false // 防止多次点击
     $("#bg").on('click', function () {
+      if (isClicked) {
+        return false
+      }
+      isClicked = true
       $(".bigBag").addClass('bagShake')
       $(".finger").hide()
       setTimeout(function() {
-      $(".jackpot").addClass('jackpotShow')
+      // $(".jackpot").addClass('jackpotShow')
+      sessionStorage.setItem('pageComeFrom', 1)
+      var i = parseInt(Math.random()*3)
+      if (i == 0) {
+        location.href='address.html'
+      } else if (i == 1 ) {
+        location.href='redPacket.html?type=1'
+      } else {
+        location.href='redPacket.html?type=2'
+      }
       },1000)
-      setTimeout(function() {
-      $(".jackpot").css('transform', 'scale(1)')
-      },2000)
+      // setTimeout(function() {
+      // $(".jackpot").css('transform', 'scale(1)')
+      // $(".jackpot").css('opacity', '1')
+      // },2000)
       clearInterval(giftInterval)
   })
   ////////////////////活动记录
@@ -718,46 +738,14 @@ var resizes = document.querySelectorAll('.resize');
   $(".recordContainer").on('touchmove', function (e) {
     e.stopPropagation()
   })
-  
-  /////////////按钮点击缩放
-  $("button").click(function () {
-    $(this).children('img').addClass('buttonScale')
-    var that = this
-    setTimeout(function () {
-      $(that).children('img').removeClass('buttonScale')
-    },1000)
-  })
-  $("a").click(function () {
-    $(this).children('img').addClass('buttonScale')
-    var that = this
-    setTimeout(function () {
-      $(that).children('img').removeClass('buttonScale')
-    },1000)
-  })
-  ///////////rem
-  function initFontSize() {
-    var screenWidth;
-    var html = document.getElementsByTagName("html")[0];
-    if (window.innerWidth) {
-        screenWidth = window.innerWidth;
-    } else if ((document.body) && (document.body.clientWidth)) {
-        screenWidth = document.body.clientWidth;
-    }
-    html.style.fontSize = 100 * screenWidth / 750 + "px";
-    if (iphoneX()) {
-      $('body').addClass('iphoneX')
+  function checkGift (type) {
+    sessionStorage.setItem('pageComeFrom', 2)
+    if (type == 'reality') {
+      location.href='address.html'
     } else {
-      $('body').removeClass('iphoneX')
+      location.href='redPacket.html?type=1'
     }
   }
-  initFontSize()
-  window.onresize = () => {
-      initFontSize()
-  }
-  
-  function iphoneX(){
-  return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
- }
   </script>
 </body>
 </html>
