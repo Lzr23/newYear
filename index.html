@@ -39,10 +39,32 @@ body{
   margin: 1rem auto 2rem auto;
 }
 .iphoneX .activityTitle{
-  margin: 2rem 0;
+  margin-top: 2rem;
+}
+.iphoneX .videoTitle{
+  margin: .5rem 0;
 }
 .iphoneX .videoSlogen{
-  margin-top: 2rem;
+  margin-top: .5rem;
+}
+.verySmall .videoTitle{
+  width: 3.4rem;
+}
+.verySmall .videoSlogen{
+  margin-top: 0;
+  width: 5.3rem;
+}
+.verySmall .activityTitle{
+  margin-top: .5rem;
+  width: 5rem;
+}
+.verySmall .videoBottom{
+  width: 4.5rem;
+  left: calc(50% - 2.25rem);
+  bottom: 5%;
+}
+.verySmall #bg{
+  bottom: 2%;
 }
 .border{
   width:100%;
@@ -77,13 +99,21 @@ opacity: 1;
 	position:absolute;
 }
 #array{
-	position:absolute;z-index:999;-webkit-animation: start 1.5s infinite ease-in-out;
+  width: 200px;
+  position: absolute;
+  z-index: 999;
+  -webkit-animation: start 1.5s infinite ease-in-out;
+  left: calc(50% - 100px);
+  bottom: 10px;
+  text-align: center;
+  font-size: .22rem;
+  color: #FFF;
 }
 #bg{
   position: absolute;
   left:0;
   right:0;
-  bottom:2rem;
+  bottom:10%;
 }
 .bigBag, .bigBag1{
   width: 5.5rem;
@@ -120,15 +150,24 @@ opacity: 1;
   margin-top: .3rem;
   text-align: left;
   padding: 0 .4rem;
+  overflow: hidden;
 }
 .logo img{
   width: 4.1rem;
-  display: block;
+  float: left;
+}
+.logo .accountBt{
+  width: 1rem;
+  float: right;
+}
+.videoTitle{
+  width: 4.4rem;
+  margin: .2rem 0;
 }
 .videoSlogen{
   width: 6.3rem;
-  margin-top: 1rem;
-  vertical-align: middle;
+  display: block;
+  margin: 0 auto;
 }
 .video{
   width: 6.1rem;
@@ -138,8 +177,47 @@ opacity: 1;
   border: 1px solid #f9d7a5;
   box-shadow: 0 10px 10px -1px #ad1017;
 }
-.video img{
-  width: 100%;
+.videoBorder1{
+  position: absolute;
+  z-index: 200;
+  left: -4px;
+  top: -4px;
+  width: .4rem;
+}
+.videoBorder2{
+  position: absolute;
+  z-index: 200;
+  right: -4px;
+  top: -4px;
+  width: .4rem;
+}
+.videoBorder3{
+  position: absolute;
+  z-index: 200;
+  right: -4px;
+  bottom: -4px;
+  width: .4rem;
+}
+.videoBorder4{
+  position: absolute;
+  z-index: 200;
+  left: -4px;
+  bottom: -4px;
+  width: .4rem;
+}
+.videoBorder5{
+  width: .5rem;
+  position: absolute;
+  z-index: 200;
+  left: -.25rem;
+  top: .7rem;
+}
+.videoBorder6{
+  width: .5rem;
+  position: absolute;
+  z-index: 200;
+  right: -.25rem;
+  top: .7rem;
 }
 .video .poster {
 position: absolute;
@@ -150,22 +228,33 @@ position: absolute;
   z-index: 100
 }
 .video video{
-  position: absolute;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 100
 }
 .videoBottom{
   width: 6rem;
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 7%;
   left: calc(50% - 3rem);
 }
 .activityTitle{
-  width: 4.3rem;
-  margin: 1.1rem 0 1rem 0;
+  width: 5.2rem;
+  margin-top: .9rem;
+}
+.drawChance{
+  width: 5rem;
+  height: .9rem;
+  line-height: .8rem;
+  padding-left: 1.2rem;
+  font-size: .36rem;
+  color: #ffe492;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background: url(images/chanceBorder.png) no-repeat;
+  background-size: 100% 100%;
+}
+.drawChance .chance{
+  font-size: .4rem;
 }
 /* .count{
   position: absolute;
@@ -445,17 +534,28 @@ button:focus{
     <!-------------视频宣传----------------->
         <section class="swiper-slide swiper-slide1">
           <div class="border">
-            <div class="logo"><img class="ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <div class="logo ani resize" swiper-animate-effect="zoomIn" swiper-animate-duration=".5s" swiper-animate-delay="0s">
+              <img src="images/logo.png"/>
+              <a href="javascript: void(0)"><img class="accountBt" src="images/accountBt.png"/></a>
+            </div>
+            <img class="videoTitle ani resize" src="images/subject.png" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="0s"/>
             <img class="videoSlogen ani resize" src="images/shipin_slogen.png" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"/>
             <div class="video ani resize" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="0s">
-            			<!-- <img src="images/video.png"/> -->
-            			<video style="display:none" id="myVideo" controls="controls"
-            		x5-video-player-fullscreen="true"
-                   webkit-playsinline="true"
-                   x-webkit-airplay="true"
-                   playsinline="true"
-                   x5-playsinline>
-            			<source src="http://120.77.221.145/video.mp4" type="video/mp4" />
+            			<img class="videoBorder1" src="images/videoBorder1.png"/>
+                  <img class="videoBorder2" src="images/videoBorder2.png"/>
+                  <img class="videoBorder3" src="images/videoBorder3.png"/>
+                  <img class="videoBorder4" src="images/videoBorder4.png"/>
+                  <!-- <img class="videoBorder5" src="images/videoBorder5.png"/>
+                  <img class="videoBorder6" src="images/videoBorder5.png"/> -->
+            			<video style="display:none" id="myVideo"
+                  controls="controls"
+                  loop='true'
+                  x5-video-player-fullscreen="true"
+                  webkit-playsinline="true"
+                  x-webkit-airplay="true"
+                  playsinline="true"
+                  x5-playsinline>
+            			<source src="images/video.mp4" type="video/mp4" />
             			</video>
             			<img class="poster" src="images/poster.png"/>
             		</div>
@@ -465,8 +565,12 @@ button:focus{
      <!---------------新年抽奖-------------->   
         <section class="swiper-slide swiper-slide2">
           <div class="border">
-            <div class="logo"><img class="ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <div class="logo ani resize" swiper-animate-effect="zoomIn" swiper-animate-duration=".5s" swiper-animate-delay="0s">
+              <img src="images/logo.png"/>
+              <a href="javascript: void(0)"><img class="accountBt" src="images/accountBt.png"/></a>
+            </div>
             <img class="activityTitle ani resize" src="images/activity_title.png" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="0s"/>
+            <div class="drawChance ani resize" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="0s">您还有<span class="chance">99</span>次抽奖机会</div>
             <div id="bg" class="ani resize" swiper-animate-effect="bounceInUp" swiper-animate-duration="1s" swiper-animate-delay="0s">
               <img class="bigBag" src="images/activity_bag.png"/>
               <!-- <img class="bigBag1" src="images/activity_bag1.png"/> -->
@@ -491,7 +595,10 @@ button:focus{
      <!----------------活动规则和记录-------------->
         <section class="swiper-slide swiper-slide3">
           <div class="border">
-            <div class="logo"><img class="ani resize" src="images/logo.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s"/></div>
+            <div class="logo ani resize" swiper-animate-effect="zoomIn" swiper-animate-duration=".5s" swiper-animate-delay="0s">
+              <img src="images/logo.png"/>
+              <a href="javascript: void(0)"><img class="accountBt" src="images/accountBt.png"/></a>
+            </div>
             <img class="recordBanner ani resize" src="images/activity_bag.png" swiper-animate-effect="zoomInDown" swiper-animate-duration="1s" swiper-animate-delay="0.3s"/>
             <img  class="ruleIcon ani resize" src="images/addressIcon5.png" swiper-animate-effect="zoomInDown" swiper-animate-duration="1s" swiper-animate-delay="0.3s"/>
             <div class="recordContainer ani resize" swiper-animate-effect="zoomInUp" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
@@ -518,7 +625,10 @@ button:focus{
           </div>
         </section>
     </div>
-   <img src="images/arrow.png" style="width:20px;height:15px; top:460px; left:150px;" id="array" class="resize"> 
+    <div class="resize" id="array">
+      <p>下滑参与抽奖活动</p>
+      <img src="images/arrow.png" style="width:20px;height:15px; top:460px; left:150px;">
+    </div>
   <div class="swiper-pagination"></div>
 </div>
 <!----------------中奖提示-------------->
@@ -612,6 +722,11 @@ var resizes = document.querySelectorAll('.resize');
   },
 	onTransitionEnd: function(swiper){
     swiperAnimate(swiper);
+    if (swiper.activeIndex ==0) {
+      $("#array p").text('下滑参与抽奖活动')
+    } else {
+      $("#array p").text('下滑查看活动介绍')
+    }
     if (swiper.activeIndex != 1) {
       clearInterval(giftInterval);
     }
@@ -745,6 +860,11 @@ var resizes = document.querySelectorAll('.resize');
     } else {
       location.href='redPacket.html?type=1'
     }
+  }
+  
+  //////////调整一下样式,尽量不滚动
+  if (window.innerHeight < 610 && (window.innerHeight / window.innerWidth) < 1.7) {
+    $("body").addClass('verySmall')
   }
   </script>
 </body>

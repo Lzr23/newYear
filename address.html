@@ -33,6 +33,9 @@
         margin-top: .7rem;
         margin-bottom: 1rem;
       }
+      .iphoneX .jackpot>img{
+        width: 100%;
+      }
       .border{
         width:100%;
         height:100%;
@@ -67,7 +70,7 @@
         top: 1rem;
       }
       .prizeImg{
-        width: 4.4rem;
+        width: 5.6rem;
       }
       .addressTitle{
         width: 5.1rem;
@@ -79,14 +82,15 @@
         margin: 0 .4rem;
       }
       .weui-cell__hd img{
-        width: .4rem;
+        width: .3rem;
         margin-right: 0;
       }
       .weui-cell{
         margin-bottom: .3rem;
         border: 2px solid #fcf4d2;
         border-radius: 8px;
-        padding: 5px 15px;
+        padding: 0 15px;
+        height: 30px;
         background: #cf261d;
       }
       .weui-label{
@@ -303,7 +307,14 @@
       if (window.innerHeight < 630 && (window.innerHeight / window.innerWidth) < 1.7) {
         $(".addressBt").css('margin-top', '.2rem')
       }
-      
+      if (window.innerHeight < 610 && (window.innerHeight / window.innerWidth) < 1.7) {
+        $(".prizeImg").css('width', '63%')
+      }
+      if (window.innerHeight < 580 && (window.innerHeight / window.innerWidth) < 1.7) {
+        $(".prizeImg").css('width', '55%')
+        $(".jackpot>img").css('width', '80%')
+        $(".weui-cell").css('margin-bottom', '.1rem')
+      }
       //////////sbIOS输入键盘会把页面顶上去还不自动退回来
       $('input').on('blur', function () {
         window.scroll(0, 0);

@@ -30,6 +30,9 @@
         margin-top: .7rem;
         margin-bottom: 1rem;
       }
+      .iphoneX .jackpot>img{
+        width: 100%;
+      }
       .border{
         width:100%;
         height:100%;
@@ -64,7 +67,7 @@
         top: 1rem;
       }
       .prizeImg{
-        width: 5.4rem;
+        width: 5.3rem;
       }
       .addressTitle{
         width: 6.2rem;
@@ -198,10 +201,10 @@
     <script src="js/common.js" type="text/javascript"></script>
     <script type="text/javascript">
       ///////////初始化显示
-      var giftIndex = getQueryString('type')
+      var giftIndex = getQueryString('type')  /// 1：爱奇艺,2:0.88,3:8.8,4:88
       switch (giftIndex){
         case '1':
-          $(".prizeImg").css('width', '5.4rem')
+          $(".prizeImg").css('width', '5.3rem')
           $('.prizeImg').attr('src', 'images/redPack1.png')
           $(".jackpot>img").attr('src', 'images/jackpot2.png')
           $(".redDesc1").show()
@@ -227,6 +230,19 @@
       if (window.innerHeight < 630 && (window.innerHeight / window.innerWidth) < 1.7) {
         $(".prizeContainer").css('margin-bottom', 0)
         $(".addressBt").css('margin-bottom', 0)
+        $(".jackpot>img").css('width', '85%')
+        if (giftIndex > 1) {
+          $(".prizeImg").css('width', '3rem')
+        } else {
+        }
+      }
+      if (window.innerHeight < 580 && (window.innerHeight / window.innerWidth) < 1.7) {
+        $(".jackpot>img").css('width', '80%')
+        if (giftIndex == 1) {
+          $(".prizeImg").css('width', '55%')
+        } else {
+          $(".prizeImg").css('width', '33%')
+        }
       }
     </script>
 	</body>
