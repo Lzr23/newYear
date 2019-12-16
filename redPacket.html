@@ -156,6 +156,17 @@
       .redBottom{
         width: 3.5rem;
       }
+      .closeShare{
+        position: absolute;
+        color: #FFF;
+        font-size: .3rem;
+        border: 2px solid;
+        border-radius: 50% 50%;
+        width: .48rem;
+        line-height: .4rem;
+        top: .3rem;
+        right: .3rem;
+      }
       .buttonScale {
         -webkit-animation: buttonScale .5s ease-in-out 1;
         animation: buttonScale .5s ease-in-out 1;
@@ -178,7 +189,7 @@
       <div class="prizeContainer">
         <img class="icon1" src="images/addressIcon5.png"/>
         <img class="icon2" src="images/addressIcon1.png"/>
-        <img class="prizeImg" src="images/redPack1.png"/>
+        <img class="prizeImg" src="images/prize1.png"/>
       </div>
       <div class="addressTitle">
         <h4>兑换说明：</h4>
@@ -205,25 +216,16 @@
       switch (giftIndex){
         case '1':
           $(".prizeImg").css('width', '5.3rem')
-          $('.prizeImg').attr('src', 'images/redPack1.png')
+          $('.prizeImg').attr('src', 'images/prize1.png')
           $(".jackpot>img").attr('src', 'images/jackpot2.png')
           $(".redDesc1").show()
           break;
         case '2':
           $(".prizeImg").css('width', '3.6rem')
-          $('.prizeImg').attr('src', 'images/redPack2.png')
+          $('.prizeImg').attr('src', 'images/prize2.png')
           $(".jackpot>img").attr('src', 'images/jackpot3.png')
           $(".redDesc2").show()
           break;
-      }
-      
-      ///////////分享海报
-      function showShare () {
-        $(".jackpot").addClass('jackpotShow')
-        setTimeout(function() {
-        $(".jackpot").css('transform', 'scale(1)')
-        $(".jackpot").css('opacity', '1')
-        },100)
       }
       
       //////////调整一下样式,尽量不滚动

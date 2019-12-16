@@ -170,8 +170,8 @@ opacity: 1;
   margin: 0 auto;
 }
 .video{
-  width: 6.1rem;
-  height: 3.5rem;
+  width: 6.5rem;
+  height: 3.6rem;
   margin: .5rem auto 1.1rem auto;
   position: relative;
   border: 1px solid #f9d7a5;
@@ -865,6 +865,10 @@ var resizes = document.querySelectorAll('.resize');
   //////////调整一下样式,尽量不滚动
   if (window.innerHeight < 610 && (window.innerHeight / window.innerWidth) < 1.7) {
     $("body").addClass('verySmall')
+  }
+  if (window.innerHeight < 520 && (window.innerHeight / window.innerWidth) < 1.7) {
+    $('.video').css({width: '5.1rem',height: '3rem'})
+    $('.bigBag, .bigBag1').css({width: '4.5rem'})
   }
   </script>
 </body>

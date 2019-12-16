@@ -42,3 +42,16 @@ function getQueryString(name){
      var r = window.location.search.substr(1).match(reg);
      if(r!=null)return  unescape(r[2]); return null;
 }
+
+///////////分享海报
+function showShare () {
+  $(".jackpot").addClass('jackpotShow')
+  setTimeout(function() {
+  $(".jackpot").css('transform', 'scale(1)')
+  $(".jackpot").css('opacity', '1')
+  },100)
+}
+////////关闭分享
+$(".closeShare").click(function () {
+  location.href = '../newYear/index.html'
+})
